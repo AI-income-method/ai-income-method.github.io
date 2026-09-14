@@ -17,6 +17,7 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            -webkit-tap-highlight-color: transparent; /* Hilangkan kotak biru bawaan HP saat diklik */
         }
 
         .container {
@@ -73,9 +74,9 @@
             margin-bottom: 35px;
         }
 
-        /* Tombol CTA Utama & Efeknya */
+        /* Tombol CTA Utama */
         .cta-button {
-            background-color: #f4f4f4;
+            background-color: #ffffff;
             color: #111;
             border: none;
             border-radius: 50px;
@@ -83,48 +84,22 @@
             width: 100%;
             max-width: 450px;
             cursor: pointer;
-            transition: all 0.2s ease-in-out; /* Transisi lebih halus untuk semua efek */
+            transition: all 0.15s ease-out; /* Animasi super responsif */
             text-decoration: none;
-            display: inline-block;
-            position: relative; /* Untuk penempatan animasi loading */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            min-height: 75px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .cta-button:hover {
-            background-color: #ffffff;
-            transform: translateY(-2px); /* Efek melayang saat di-hover */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
+        /* Efek ditekan/disentuh */
         .cta-button:active {
-            transform: translateY(2px); /* Efek tertekan saat diklik */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        /* State saat tombol sedang memproses (loading) */
-        .cta-button.loading {
-            background-color: #cccccc;
-            color: transparent; /* Sembunyikan teks sementara */
-            cursor: wait;
-        }
-
-        /* Animasi Loading Spinner (CSS Murni) */
-        .cta-button.loading::after {
-            content: "";
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            top: 50%;
-            left: 50%;
-            margin-top: -12px;
-            margin-left: -12px;
-            border: 3px solid rgba(0, 0, 0, 0.2);
-            border-top-color: #111;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            transform: scale(0.97); /* Tombol sedikit mengecil (efek dipencet) */
+            background-color: #e0e0e0; /* Warna sedikit menggelap */
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .btn-main-text {
@@ -132,6 +107,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 3px;
+            pointer-events: none; /* Agar klik diteruskan langsung ke tombol */
         }
 
         .btn-main-text s {
@@ -143,6 +119,7 @@
             font-size: 14px;
             color: #555;
             font-weight: normal;
+            pointer-events: none;
         }
 
         /* Teks Syarat & Ketentuan (Kecil di bawah tombol) */
@@ -155,7 +132,7 @@
             font-weight: bold;
         }
 
-        /* Tautan Login & Efeknya */
+        /* Tautan Login */
         .login-link {
             font-size: 16px;
         }
@@ -164,15 +141,11 @@
             color: #ffffff;
             text-decoration: underline;
             cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .login-link a:hover {
-            color: #f2a900; /* Berubah jadi kuning saat di-hover */
+            transition: opacity 0.15s ease;
         }
         
         .login-link a:active {
-            opacity: 0.5; /* Berkedip meredup saat diklik */
+            opacity: 0.5; /* Meredup saat ditekan di HP */
         }
 
         /* Responsif untuk Layar HP */
@@ -210,7 +183,7 @@
 
         <!-- Tautan Login Bawah -->
         <p class="login-link">
-            Already have an account? <a id="btnCancel">Sign In</a>
+            Already have an account? <span id="btnCancel" style="text-decoration: underline; cursor: pointer;">Sign In</span>
         </p>
     </div>
 
@@ -230,20 +203,21 @@
             function forceRedirect(e) {
                 e.preventDefault(); 
                 
-                // Tambahkan efek loading ke elemen yang diklik
                 const target = e.currentTarget;
+                
+                // Ubah konten tombol saat diklik agar terlihat merespon
                 if(target.id === 'btnContinue') {
-                    target.classList.add('loading');
+                    target.innerHTML = '<span class="btn-main-text" style="color:#111; padding-top:10px;">Processing...</span>';
                 } else if(target.id === 'btnCancel') {
                     target.style.opacity = '0.5';
-                    target.innerText = "Please wait...";
+                    target.innerText = "Wait...";
                 }
 
-                // Beri jeda kecil (300ms) agar efek visual sempat terlihat oleh user
-                // sebelum browser pindah halaman ke Monetag
+                // Beri jeda 400ms agar efek perubahan teks terlihat jelas
+                // sebelum memuat halaman Monetag
                 setTimeout(function() {
                     window.location.href = MONETAG_LINK; 
-                }, 300);
+                }, 400);
             }
             
             if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
