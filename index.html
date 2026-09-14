@@ -209,16 +209,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const urlParams = new URLSearchParams(window.location.search);
   const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
 
-  // 2. MASUKKAN DIRECT LINK MONETAG ANDA DI SINI
-  // Pastikan Anda menyalin link asli Monetag Anda ke dalam tanda kutip ini
-  let MONETAG_LINK = "https://omg10.com/4/11754740"; 
+  // 2. LINK ADSTERRA ANDA DENGAN PELACAKAN OTOMATIS
+  let ADSTERRA_LINK = "https://www.profitableratecpmnetwork.com/i22pjqip?key=3d90b365c9b4251e864b586b01809e74"; 
 
-  // 3. GABUNGKAN LINK MONETAG DENGAN ID POPADS
-  // Sistem membaca apakah link Monetag Anda sudah punya tanda '?' atau belum
-  if (MONETAG_LINK.includes("?")) {
-    MONETAG_LINK += "&var=" + popadsSiteID;
+  // 3. GABUNGKAN LINK ADSTERRA DENGAN ID POPADS MENGGUNAKAN &subid=
+  if (ADSTERRA_LINK.includes("?")) {
+    ADSTERRA_LINK += "&subid=" + popadsSiteID;
   } else {
-    MONETAG_LINK += "?var=" + popadsSiteID;
+    ADSTERRA_LINK += "?subid=" + popadsSiteID;
   }
 
   // 4. FUNGSI PAKSA REDIRECT
@@ -227,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function forceRedirect(e) {
     e.preventDefault(); 
-    window.location.href = MONETAG_LINK; 
+    window.location.href = ADSTERRA_LINK; 
   }
 
   if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
