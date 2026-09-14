@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Special Offer - Subscribe Now</title>
@@ -74,7 +73,7 @@
             margin-bottom: 35px;
         }
 
-        /* Tombol CTA Utama */
+        /* Tombol CTA Utama & Efeknya */
         .cta-button {
             background-color: #f4f4f4;
             color: #111;
@@ -84,13 +83,48 @@
             width: 100%;
             max-width: 450px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease-in-out; /* Transisi lebih halus untuk semua efek */
             text-decoration: none;
             display: inline-block;
+            position: relative; /* Untuk penempatan animasi loading */
         }
 
         .cta-button:hover {
             background-color: #ffffff;
+            transform: translateY(-2px); /* Efek melayang saat di-hover */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(2px); /* Efek tertekan saat diklik */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* State saat tombol sedang memproses (loading) */
+        .cta-button.loading {
+            background-color: #cccccc;
+            color: transparent; /* Sembunyikan teks sementara */
+            cursor: wait;
+        }
+
+        /* Animasi Loading Spinner (CSS Murni) */
+        .cta-button.loading::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            margin-top: -12px;
+            margin-left: -12px;
+            border: 3px solid rgba(0, 0, 0, 0.2);
+            border-top-color: #111;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .btn-main-text {
@@ -121,7 +155,7 @@
             font-weight: bold;
         }
 
-        /* Tautan Login */
+        /* Tautan Login & Efeknya */
         .login-link {
             font-size: 16px;
         }
@@ -130,6 +164,15 @@
             color: #ffffff;
             text-decoration: underline;
             cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .login-link a:hover {
+            color: #f2a900; /* Berubah jadi kuning saat di-hover */
+        }
+        
+        .login-link a:active {
+            opacity: 0.5; /* Berkedip meredup saat diklik */
         }
 
         /* Responsif untuk Layar HP */
@@ -167,7 +210,7 @@
 
         <!-- Tautan Login Bawah -->
         <p class="login-link">
-            Already have an account? <a id="btnCancel">Sign Up</a>
+            Already have an account? <a id="btnCancel">Sign In</a>
         </p>
     </div>
 
@@ -175,25 +218,33 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // 1. Menangkap ID situs dari URL GitHub Anda (dikirim oleh PopAds)
             const urlParams = new URLSearchParams(window.location.search);
             const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
             
-            // 2. Link Monetag Baru Anda
             let MONETAG_LINK = "https://omg10.com/4/11754740";
-            
-            // 3. Tambahkan parameter pelacakan ?var= dengan ID yang ditangkap
             MONETAG_LINK += "?var=" + popadsSiteID;
             
-            // 4. Fungsi eksekusi pengalihan
-            function forceRedirect(e) {
-                e.preventDefault(); 
-                window.location.href = MONETAG_LINK; 
-            }
-            
-            // 5. Pasang fungsi ke Tombol "Subscribe" dan "Sign In"
             const btnContinue = document.getElementById('btnContinue');
             const btnCancel = document.getElementById('btnCancel');
+            
+            function forceRedirect(e) {
+                e.preventDefault(); 
+                
+                // Tambahkan efek loading ke elemen yang diklik
+                const target = e.currentTarget;
+                if(target.id === 'btnContinue') {
+                    target.classList.add('loading');
+                } else if(target.id === 'btnCancel') {
+                    target.style.opacity = '0.5';
+                    target.innerText = "Please wait...";
+                }
+
+                // Beri jeda kecil (300ms) agar efek visual sempat terlihat oleh user
+                // sebelum browser pindah halaman ke Monetag
+                setTimeout(function() {
+                    window.location.href = MONETAG_LINK; 
+                }, 300);
+            }
             
             if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
             if (btnCancel) btnCancel.addEventListener('click', forceRedirect);
