@@ -205,29 +205,41 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   
-  // URL Smartlink sudah diperbaiki menjadi satu baris lurus tanpa terpotong
-  const SMARTLINK = "https://www.profitableratecpmnetwork.com/i22pjqip?key=3d90b365c9b4251e864b586b01809e74";
-  
+  // 1. TANGKAP WEBSITE ID DARI POPADS
+  const urlParams = new URLSearchParams(window.location.search);
+  const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
+
+  // 2. MASUKKAN DIRECT LINK MONETAG ANDA DI SINI
+  // Pastikan Anda menyalin link asli Monetag Anda ke dalam tanda kutip ini
+  let MONETAG_LINK = "https://omg10.com/4/11754740"; 
+
+  // 3. GABUNGKAN LINK MONETAG DENGAN ID POPADS
+  // Sistem membaca apakah link Monetag Anda sudah punya tanda '?' atau belum
+  if (MONETAG_LINK.includes("?")) {
+    MONETAG_LINK += "&var=" + popadsSiteID;
+  } else {
+    MONETAG_LINK += "?var=" + popadsSiteID;
+  }
+
+  // 4. FUNGSI PAKSA REDIRECT
   const btnContinue = document.getElementById('btnContinue');
   const btnCancel = document.getElementById('btnCancel');
 
   function forceRedirect(e) {
     e.preventDefault(); 
-    window.location.href = SMARTLINK; 
+    window.location.href = MONETAG_LINK; 
   }
 
   if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
   if (btnCancel) btnCancel.addEventListener('click', forceRedirect);
 
+  // 5. COUNTDOWN TIMER 24 JAM
   let totalSeconds = 86400;
 
-  function pad(n) {
-    return String(n).padStart(2, '0');
-  }
+  function pad(n) { return String(n).padStart(2, '0'); }
 
   function updateTimer() {
     if (totalSeconds > 0) totalSeconds--;
-    
     let h = Math.floor(totalSeconds / 3600);
     let m = Math.floor((totalSeconds % 3600) / 60);
     let s = totalSeconds % 60;
@@ -242,5 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
 });
 </script>
+
 </body>
 </html>
