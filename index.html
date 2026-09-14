@@ -1,258 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offer - Subscribe Now</title>
+    <style>
+        /* Pengaturan Dasar & Latar Belakang */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
 
- <script>(function(s){s.dataset.zone='11754735',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
- 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reward Notice - Confirm Your Claim</title>
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
+        .container {
+            max-width: 600px;
+            padding: 40px 20px;
+            width: 100%;
+        }
 
-  body {
-    background-color: #111111;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow: hidden;
-  }
+        /* Label Sale */
+        .sale-badge {
+            display: inline-block;
+            border: 1px solid #ffffff;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
 
-  .modal {
-    background-color: #222222;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 40px 30px 30px;
-    width: 100%;
-    max-width: 480px;
-    text-align: center;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
-  }
+        /* Bagian Harga (Kuning Emas) */
+        .price-section {
+            color: #f2a900;
+            margin-bottom: 20px;
+        }
 
-  .notice-label {
-    color: #fbbf24;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
-  }
+        .price-original {
+            font-size: 36px;
+            font-weight: 800;
+            text-decoration: line-through;
+            margin-bottom: -15px;
+            display: inline-block;
+        }
 
-  h1 {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    letter-spacing: -0.3px;
-  }
+        .price-main {
+            font-size: 130px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -3px;
+        }
 
-  .desc {
-    color: #d1d5db;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 28px;
-  }
+        /* Teks Judul (Font Serif Klasik) */
+        .headline {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 42px;
+            font-weight: normal;
+            margin: 20px 0 10px;
+            line-height: 1.2;
+        }
 
-  .timer-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 8px;
-  }
-  .t-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 55px;
-  }
-  .t-num {
-    font-size: 34px;
-    font-weight: 800;
-    color: #fde047;
-    font-variant-numeric: tabular-nums;
-  }
-  .t-sep {
-    font-size: 26px;
-    font-weight: 400;
-    color: #555555;
-    margin-top: 2px;
-  }
-  .t-lbl {
-    font-size: 10px;
-    color: #9ca3af;
-    margin-top: 6px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
+        .subhead {
+            font-size: 20px;
+            margin-bottom: 35px;
+        }
 
-  .expire-msg {
-    color: #9ca3af;
-    font-size: 12px;
-    margin-bottom: 28px;
-  }
+        /* Tombol CTA Utama */
+        .cta-button {
+            background-color: #f4f4f4;
+            color: #111;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 20px;
+            width: 100%;
+            max-width: 450px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-  .btn-wrap {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .btn {
-    flex: 1;
-    padding: 16px 10px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .btn-pri {
-    background-color: #fde047;
-    color: #1c1917;
-    box-shadow: 0 4px 15px rgba(253, 224, 71, 0.15);
-  }
-  .btn-pri:hover {
-    background-color: #fef08a;
-    transform: translateY(-2px);
-  }
+        .cta-button:hover {
+            background-color: #ffffff;
+        }
 
-  .btn-sec {
-    background-color: #3f3f46;
-    color: #ffffff;
-  }
-  .btn-sec:hover {
-    background-color: #52525b;
-    transform: translateY(-2px);
-  }
+        .btn-main-text {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 3px;
+        }
 
-  .footer {
-    font-size: 11px;
-    color: #71717a;
-  }
-  .footer a {
-    color: #71717a;
-    text-decoration: underline;
-    margin: 0 4px;
-  }
-  .footer a:hover {
-    color: #a1a1aa;
-  }
+        .btn-main-text s {
+            color: #666;
+            font-weight: normal;
+        }
 
-  @media (max-width: 400px) {
-    .btn-wrap {
-      flex-direction: column;
-    }
-    .modal {
-      padding: 35px 20px 25px;
-    }
-    .t-num { font-size: 28px; }
-    .t-box { min-width: 45px; }
-  }
-</style>
+        .btn-sub-text {
+            font-size: 14px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        /* Teks Syarat & Ketentuan (Kecil di bawah tombol) */
+        .disclaimer {
+            font-size: 13px;
+            color: #cccccc;
+            margin: 15px auto 40px;
+            max-width: 480px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        /* Tautan Login */
+        .login-link {
+            font-size: 16px;
+        }
+
+        .login-link a {
+            color: #ffffff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 480px) {
+            .price-main { font-size: 100px; }
+            .headline { font-size: 32px; }
+            .subhead { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="modal">
-    <span class="notice-label">REWARD NOTICE</span>
-    <h1>Your $500 Cash is Waiting</h1>
-    <p class="desc">Your digital cash spot is reserved. Confirm your claim now before your timer expires and the reward is passed on.</p>
-    
-    <div class="timer-wrap">
-      <div class="t-box">
-        <span class="t-num" id="tHours">23</span>
-        <span class="t-lbl">HRS</span>
-      </div>
-      <span class="t-sep">:</span>
-      <div class="t-box">
-        <span class="t-num" id="tMins">59</span>
-        <span class="t-lbl">MIN</span>
-      </div>
-      <span class="t-sep">:</span>
-      <div class="t-box">
-        <span class="t-num" id="tSecs">59</span>
-        <span class="t-lbl">SEC</span>
-      </div>
+    <div class="container">
+        <!-- Label Atas -->
+        <div class="sale-badge">Sale</div>
+
+        <!-- Harga Coret dan Harga Diskon -->
+        <div class="price-section">
+            <div class="price-original"><s>$90 USD</s></div>
+            <div class="price-main">$20</div>
+        </div>
+
+        <!-- Teks Utama -->
+        <h1 class="headline">A smarter season starts now.</h1>
+        <p class="subhead">Save on your first year of The Post.</p>
+
+        <!-- Tombol Aksi -->
+        <button class="cta-button" id="btnContinue">
+            <span class="btn-main-text">Subscribe for <s>$90 USD</s> $20</span>
+            <span class="btn-sub-text">for the first year</span>
+        </button>
+
+        <!-- Keterangan Kecil -->
+        <p class="disclaimer">After first year, renews at $90 USD/year. Pricing subject to change. Cancel anytime.</p>
+
+        <!-- Tautan Login Bawah -->
+        <p class="login-link">
+            Already have an account? <a id="btnCancel">Sign In</a>
+        </p>
     </div>
 
-    <div class="expire-msg">Offer Expires Soon</div>
-
-    <div class="btn-wrap">
-      <a href="#" id="btnContinue" class="btn btn-pri">Continue &rarr;</a>
-      <a href="#" id="btnCancel" class="btn btn-sec">Cancel</a>
-    </div>
-
-    <div class="footer">
-      <a href="#">Privacy</a> | <a href="#">Legal</a> | <a href="#">Terms</a>
-    </div>
-  </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // 1. TANGKAP WEBSITE ID DARI POPADS
-  const urlParams = new URLSearchParams(window.location.search);
-  const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
-
-  // 2. MASUKKAN DIRECT LINK MONETAG ANDA DI SINI
-  // Pastikan Anda menyalin link asli Monetag Anda ke dalam tanda kutip ini
-  let MONETAG_LINK = "https://omg10.com/4/11754740"; 
-
-  // 3. GABUNGKAN LINK MONETAG DENGAN ID POPADS
-  // Sistem membaca apakah link Monetag Anda sudah punya tanda '?' atau belum
-  if (MONETAG_LINK.includes("?")) {
-    MONETAG_LINK += "&var=" + popadsSiteID;
-  } else {
-    MONETAG_LINK += "?var=" + popadsSiteID;
-  }
-
-  // 4. FUNGSI PAKSA REDIRECT
-  const btnContinue = document.getElementById('btnContinue');
-  const btnCancel = document.getElementById('btnCancel');
-
-  function forceRedirect(e) {
-    e.preventDefault(); 
-    window.location.href = MONETAG_LINK; 
-  }
-
-  if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
-  if (btnCancel) btnCancel.addEventListener('click', forceRedirect);
-
-  // 5. COUNTDOWN TIMER 24 JAM
-  let totalSeconds = 86400;
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function updateTimer() {
-    if (totalSeconds > 0) totalSeconds--;
-    let h = Math.floor(totalSeconds / 3600);
-    let m = Math.floor((totalSeconds % 3600) / 60);
-    let s = totalSeconds % 60;
-    
-    document.getElementById('tHours').textContent = pad(h);
-    document.getElementById('tMins').textContent = pad(m);
-    document.getElementById('tSecs').textContent = pad(s);
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
-  
-});
-</script>
+    <!-- SCRIPT ARBITRASE (PELACAK ZONE ID UNTUK MONETAG OMG10) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Menangkap ID situs dari URL GitHub Anda (dikirim oleh PopAds)
+            const urlParams = new URLSearchParams(window.location.search);
+            const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
+            
+            // 2. Link Monetag Baru Anda
+            let MONETAG_LINK = "https://omg10.com/4/11754740";
+            
+            // 3. Tambahkan parameter pelacakan ?var= dengan ID yang ditangkap
+            MONETAG_LINK += "?var=" + popadsSiteID;
+            
+            // 4. Fungsi eksekusi pengalihan
+            function forceRedirect(e) {
+                e.preventDefault(); 
+                window.location.href = MONETAG_LINK; 
+            }
+            
+            // 5. Pasang fungsi ke Tombol "Subscribe" dan "Sign In"
+            const btnContinue = document.getElementById('btnContinue');
+            const btnCancel = document.getElementById('btnCancel');
+            
+            if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
+            if (btnCancel) btnCancel.addEventListener('click', forceRedirect);
+        });
+    </script>
 
 </body>
 </html>
