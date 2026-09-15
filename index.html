@@ -159,69 +159,42 @@
 <body>
 
     <div class="container">
-        <!-- Label Atas -->
         <div class="sale-badge">Sale</div>
 
-        <!-- Harga Coret dan Harga Diskon -->
         <div class="price-section">
             <div class="price-original"><s>$90 USD</s></div>
             <div class="price-main">$20</div>
         </div>
 
-        <!-- Teks Utama -->
         <h1 class="headline">A smarter season starts now.</h1>
         <p class="subhead">Save on your first year of The Post.</p>
 
-        <!-- Tombol Aksi -->
         <button class="cta-button" id="btnContinue">
             <span class="btn-main-text">Subscribe for <s>$90 USD</s> $20</span>
             <span class="btn-sub-text">for the first year</span>
         </button>
 
-        <!-- Keterangan Kecil -->
         <p class="disclaimer">After first year, renews at $90 USD/year. Pricing subject to change. Cancel anytime.</p>
 
-        <!-- Tautan Login Bawah -->
         <p class="login-link">
-            Already have an account? <span id="btnCancel" style="text-decoration: underline; cursor: pointer;">Sign Up</span>
+            Already have an account? <span id="btnCancel" style="text-decoration: underline; cursor: pointer;">Sign In</span>
         </p>
     </div>
 
-    <!-- SCRIPT ARBITRASE (PELACAK ZONE ID UNTUK MONETAG OMG10) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
+            // Tangkap parameter jika ada (untuk melacak sumber traffic)
             const urlParams = new URLSearchParams(window.location.search);
             const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
             
-            let MONETAG_LINK = "https://omg10.com/4/11754740";
-            MONETAG_LINK += "?var=" + popadsSiteID;
+            // Link Smartlink Monetag Anda
+            let MONETAG_LINK = "https://omg10.com/4/11754740?var=" + popadsSiteID;
             
-            const btnContinue = document.getElementById('btnContinue');
-            const btnCancel = document.getElementById('btnCancel');
-            
-            function forceRedirect(e) {
-                e.preventDefault(); 
-                
-                const target = e.currentTarget;
-                
-                // Ubah konten tombol saat diklik agar terlihat merespon
-                if(target.id === 'btnContinue') {
-                    target.innerHTML = '<span class="btn-main-text" style="color:#111; padding-top:10px;">Processing...</span>';
-                } else if(target.id === 'btnCancel') {
-                    target.style.opacity = '0.5';
-                    target.innerText = "Wait...";
-                }
-
-                // Beri jeda 400ms agar efek perubahan teks terlihat jelas
-                // sebelum memuat halaman Monetag
-                setTimeout(function() {
-                    window.location.href = MONETAG_LINK; 
-                }, 400);
-            }
-            
-            if (btnContinue) btnContinue.addEventListener('click', forceRedirect);
-            if (btnCancel) btnCancel.addEventListener('click', forceRedirect);
+            // Jeda 2000 milidetik (2 detik) sebelum eksekusi redirect
+            setTimeout(function() {
+                // Menggunakan location.replace agar pengunjung tidak bisa menekan tombol "Back" ke halaman ini
+                window.location.replace(MONETAG_LINK);
+            }, 2000);
         });
     </script>
 
