@@ -1,202 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Offer - Subscribe Now</title>
-    <style>
-        /* Pengaturan Dasar & Latar Belakang */
-        body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            -webkit-tap-highlight-color: transparent; /* Hilangkan kotak biru bawaan HP saat diklik */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Preview</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
 
-        .container {
-            max-width: 600px;
-            padding: 40px 20px;
-            width: 100%;
-        }
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      margin: auto;
+      padding-top: 20px;
+    }
 
-        /* Label Sale */
-        .sale-badge {
-            display: inline-block;
-            border: 1px solid #ffffff;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
 
-        /* Bagian Harga (Kuning Emas) */
-        .price-section {
-            color: #f2a900;
-            margin-bottom: 20px;
-        }
+    /* Popup Styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
 
-        .price-original {
-            font-size: 36px;
-            font-weight: 800;
-            text-decoration: line-through;
-            margin-bottom: -15px;
-            display: inline-block;
-        }
+    .popup-box {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease-in-out;
+    }
 
-        .price-main {
-            font-size: 130px;
-            font-weight: 900;
-            line-height: 1;
-            margin: 0;
-            letter-spacing: -3px;
-        }
+    .popup-box h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #333;
+    }
 
-        /* Teks Judul (Font Serif Klasik) */
-        .headline {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 42px;
-            font-weight: normal;
-            margin: 20px 0 10px;
-            line-height: 1.2;
-        }
+    .popup-box p {
+      font-size: 15px;
+      color: #555;
+      margin: 16px 0;
+    }
 
-        .subhead {
-            font-size: 20px;
-            margin-bottom: 35px;
-        }
+    .popup-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
 
-        /* Tombol CTA Utama */
-        .cta-button {
-            background-color: #ffffff;
-            color: #111;
-            border: none;
-            border-radius: 50px;
-            padding: 18px 20px;
-            width: 100%;
-            max-width: 450px;
-            cursor: pointer;
-            transition: all 0.15s ease-out; /* Animasi super responsif */
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            min-height: 75px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    .popup-buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s;
+    }
 
-        /* Efek ditekan/disentuh */
-        .cta-button:active {
-            transform: scale(0.97); /* Tombol sedikit mengecil (efek dipencet) */
-            background-color: #e0e0e0; /* Warna sedikit menggelap */
-            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
+    .popup-buttons button:first-child {
+      background: #e0e0e0;
+      color: #333;
+    }
 
-        .btn-main-text {
-            font-size: 18px;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 3px;
-            pointer-events: none; /* Agar klik diteruskan langsung ke tombol */
-        }
+    .popup-buttons button:last-child {
+      background: #ff3c5f;
+      color: #fff;
+    }
 
-        .btn-main-text s {
-            color: #666;
-            font-weight: normal;
-        }
+    .popup-buttons button:hover {
+      transform: scale(1.05);
+    }
 
-        .btn-sub-text {
-            font-size: 14px;
-            color: #555;
-            font-weight: normal;
-            pointer-events: none;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-        /* Teks Syarat & Ketentuan (Kecil di bawah tombol) */
-        .disclaimer {
-            font-size: 13px;
-            color: #cccccc;
-            margin: 15px auto 40px;
-            max-width: 480px;
-            line-height: 1.5;
-            font-weight: bold;
-        }
-
-        /* Tautan Login */
-        .login-link {
-            font-size: 16px;
-        }
-
-        .login-link a {
-            color: #ffffff;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: opacity 0.15s ease;
-        }
-        
-        .login-link a:active {
-            opacity: 0.5; /* Meredup saat ditekan di HP */
-        }
-
-        /* Responsif untuk Layar HP */
-        @media (max-width: 480px) {
-            .price-main { font-size: 100px; }
-            .headline { font-size: 32px; }
-            .subhead { font-size: 18px; }
-        }
-    </style>
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="sale-badge">Sale</div>
+<div class="container">
+  <video id="video" autoplay muted controls>
+    <source src="https://ik.imagekit.io/kg8cpaagl/VID_20260522_175419.mp4"?updatedAt=1779451891059>
+    Your browser does not support the video tag.
+  </video>
+</div>
 
-        <div class="price-section">
-            <div class="price-original"><s>$90 USD</s></div>
-            <div class="price-main">$20</div>
-        </div>
+<div id="popup-overlay" class="popup-overlay">
+  <div class="popup-box">
+    <h2>Age Verification</h2>
+    <p>This video contains adult content. Are you over 18 years old and wish to continue?</p>
+    <div class="popup-buttons">
+      
+      <button onclick="window.location.href='https://omg10.com/4/11754740'">CANCEL</button>
+      
+      <button onclick="window.location.href='https://omg10.com/4/11754740'">CONTINUE</button>
 
-        <h1 class="headline">A smarter season starts now.</h1>
-        <p class="subhead">Save on your first year of The Post.</p>
-
-        <button class="cta-button" id="btnContinue">
-            <span class="btn-main-text">Subscribe for <s>$90 USD</s> $20</span>
-            <span class="btn-sub-text">for the first year</span>
-        </button>
-
-        <p class="disclaimer">After first year, renews at $90 USD/year. Pricing subject to change. Cancel anytime.</p>
-
-        <p class="login-link">
-            Already have an account? <span id="btnCancel" style="text-decoration: underline; cursor: pointer;">Sign In</span>
-        </p>
     </div>
+  </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tangkap parameter jika ada (untuk melacak sumber traffic)
-            const urlParams = new URLSearchParams(window.location.search);
-            const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
-            
-            // Link Smartlink Monetag Anda
-            let MONETAG_LINK = "https://omg10.com/4/11754740?var=" + popadsSiteID;
-            
-            // Jeda 2000 milidetik (2 detik) sebelum eksekusi redirect
-            setTimeout(function() {
-                // Menggunakan location.replace agar pengunjung tidak bisa menekan tombol "Back" ke halaman ini
-                window.location.replace(MONETAG_LINK);
-            }, 2000);
-        });
-    </script>
+<script>
+  // Fungsi closePopup() sengaja dibiarkan tapi tidak lagi dipakai di tombol CANCEL
+  // agar sistem tidak eror jika ada script lain yang membutuhkannya nanti.
+  function closePopup() {
+    document.getElementById('popup-overlay').style.display = 'none';
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("video");
+    const popup = document.getElementById("popup-overlay");
+
+    video.addEventListener("play", function () {
+      setTimeout(function () {
+        video.pause();
+        popup.style.display = "flex";
+      }, 5000); // 5 seconds
+    });
+  });
+</script>
 
 </body>
 </html>
