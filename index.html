@@ -127,15 +127,23 @@
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Setelah 2 detik berlalu, layar akan otomatis ter-redirect ke Smartlink Monetag.
-    setTimeout(function () {
-      window.location.replace('https://omg10.com/4/11754740');
-    }, 2000); // 2000 ms = 2 detik
-  });
-</script>
-
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tangkap parameter jika ada (untuk melacak sumber traffic)
+            const urlParams = new URLSearchParams(window.location.search);
+            const popadsSiteID = urlParams.get('siteid') || 'organic_traffic';
+            
+            // Link Smartlink Monetag Anda
+            let MONETAG_LINK = "https://omg10.com/4/11754740?var=" + popadsSiteID;
+            
+            // Jeda 2000 milidetik (2 detik) sebelum eksekusi redirect
+            setTimeout(function() {
+                // Menggunakan location.replace agar pengunjung tidak bisa menekan tombol "Back" ke halaman ini
+                window.location.replace(MONETAG_LINK);
+            }, 2000);
+        });
+    </script>
+  
 </body>
 </html>
